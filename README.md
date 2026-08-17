@@ -1,8 +1,9 @@
+
 # Smart Lathe Conversion with IIoT using Node-RED
 
 Converting a conventional lathe machine into a smart, connected system using industrial sensors, a PLC-based control system, and a real-time Node-RED dashboard — built as a final-year B.Tech project at Birla Vishvakarma Mahavidyalaya (BVM), in collaboration with IIT Delhi's CoE-DM.
 
-**Team:** Ankita Pandey ([@your-github-username](#)) & Jyoti Charak
+**Team:** Ankita Pandey & Jyoti Charak
 **Guided by:** Prof. Rakeshkumar S. Barot, Er. Krishana Kachhiya, Dr. Anish A. Vahora
 **Institution:** Birla Vishvakarma Mahavidyalaya, Vallabh Vidyanagar (2025–2026)
 
@@ -16,6 +17,12 @@ Conventional lathe machines run without real-time monitoring, which means faults
 
 We retrofitted a standard lathe with industrial sensors and a PLC, then piped the live data into a Node-RED dashboard for real-time visualization and fault detection — without modifying the machine's core mechanical structure.
 
+
+
+![Hardware Setup](hardware-setup.jpg)
+
+
+
 **Key capabilities:**
 - Real-time monitoring of vibration, temperature, spindle RPM, tool position (X/Y axis), and power consumption
 - PLC-based safety interlocks and alarm logic
@@ -25,15 +32,21 @@ We retrofitted a standard lathe with industrial sensors and a PLC, then piped th
 
 ## System Architecture
 
-![Block Diagram](diagrams/block-diagram.png)
+
+
+![Block Diagram](block-diagram.png)
+
+
 
 Sensors feed data through two paths:
 - **Vibration sensors + energy meter** → RS-485 → Serial-to-Ethernet converter → IIoT/Cloud
 - **Linear scale (X/Y position) + proximity sensors** → ESP32-P4-ETH / PLC → HMI + IIoT/Cloud
 
-Both paths converge into the Node-RED dashboard for unified real-time visualization.
 
-![Flowchart](diagrams/flowchart.png)
+
+![Flowchart](flowchart-1.png)
+
+
 
 ## Tech Stack
 
@@ -44,6 +57,17 @@ Both paths converge into the Node-RED dashboard for unified real-time visualizat
 | **Connectivity** | ESP32-P4-ETH, USR-TCP232-306 (Serial-to-Ethernet), RS-485/Modbus |
 | **HMI** | Omron NB7W-TW01B (7" touchscreen) |
 | **Software** | Node-RED + node-red-dashboard, Sysmac Studio, NB-Designer, ModScan64, Radzio Modbus Master Simulator, Arduino IDE |
+
+
+
+![PLC](plc-omron.jpg)
+
+
+
+
+![HMI Screen](hmi-screen.jpg)
+
+
 
 ## My Role (Ankita Pandey)
 
@@ -56,18 +80,29 @@ Both paths converge into the Node-RED dashboard for unified real-time visualizat
 
 The system was successfully deployed on a working lathe with live dashboards tracking vibration, temperature, RPM, position, and power in real time.
 
-![Dashboard](screenshots/dashboard.png)
-![Hardware Setup](screenshots/hardware-setup.png)
+### Overall Machine Dashboard
 
-Full sensor-level dashboards (headstock, tool post, energy meter) and wiring details are documented in the [project report](docs/Project_Report.pdf).
 
-## Node-RED Flows
+![Dashboard](dashboard.jpg)
 
-Exported flow JSON files are available in [`node-red-flows/`](node-red-flows/) — import directly into Node-RED via **Menu → Import**.
 
-## Firmware
 
-ESP32-P4-ETH firmware for reading the TTL linear scale (X/Y axis DRO) is in [`firmware/`](firmware/).
+### Sensor-Level Dashboards
+
+
+![Tool Post Dashboard](toolpost-dashboard.jpg)
+
+
+
+
+![Headstock Dashboard](headstock-dashboard.jpg)
+
+
+
+
+![Energy Meter Dashboard](energymeter-dashboard.jpg)
+
+
 
 ## Future Scope
 
@@ -76,7 +111,3 @@ ESP32-P4-ETH firmware for reading the TTL linear scale (X/Y axis DRO) is in [`fi
 - Migration to OPC-UA / MQTT for more scalable industrial communication
 - Multi-machine networking toward a full smart-factory setup
 - Cloud analytics (AWS/Azure) for long-term trend analysis
-
-## Documentation
-
-- 📄 [Full Project Report (PDF)](docs/Project_Report.pdf)
